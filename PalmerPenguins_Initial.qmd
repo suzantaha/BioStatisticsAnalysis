@@ -1,25 +1,33 @@
 ---
 title: "Palmer Penguins Initial Analysis"
-author: "Suzan"
+author: "Suzan Taha"
 format: html
 editor: visual
 execute: 
   keep-md: true
 ---
 
-## Palmer Penguins
+## Palmer Penguin Analysis
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+This is an analysis of the Palmer's Penguin dataset.
+
+## Loading Packages and Datasets
+
+Here we will load the tidyverse package and penguins data.
 
 ```{r}
 #Load the tidyverse
 library(tidyverse)
+library(kableExtra)
 
 #Read the penguins_samp1 data file from github
 penguins <- read_csv("https://raw.githubusercontent.com/mcduryea/Intro-to-Bioinformatics/main/data/penguins_samp1.csv")
 #See the first six rows of the data we've read in to our notebook
 
-penguins %>% head()
+penguins %>% 
+  head() %>%#if you want a certain number of rows -- add a number in the paranthases
+  kable() %>%
+  kable_styling(c("striped","hover"))
 ```
 
 In the data above we are looking at a data set of penguins. This data set tells us the species of the penguins, which island they are originated from, their bill length and bill depth, flipper length, the mass and sex of each penguin as well as the year they were born.

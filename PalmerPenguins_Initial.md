@@ -1,6 +1,6 @@
 ---
 title: "Palmer Penguins Initial Analysis"
-author: "Suzan"
+author: "Suzan Taha"
 format: html
 editor: visual
 execute: 
@@ -9,9 +9,13 @@ execute:
 
 
 
-## Palmer Penguins
+## Palmer Penguin Analysis
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+This is an analysis of the Palmer's Penguin dataset.
+
+## Loading Packages and Datasets
+
+Here we will load the tidyverse package and penguins data.
 
 
 ::: {.cell}
@@ -31,6 +35,21 @@ library(tidyverse)
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
+```
+:::
+
+```{.r .cell-code}
+library(kableExtra)
+```
+
+::: {.cell-output .cell-output-stderr}
+```
+
+Attaching package: 'kableExtra'
+
+The following object is masked from 'package:dplyr':
+
+    group_rows
 ```
 :::
 
@@ -55,22 +74,94 @@ dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
 ```{.r .cell-code}
 #See the first six rows of the data we've read in to our notebook
 
-penguins %>% head()
+penguins %>% 
+  head() %>%#if you want a certain number of rows -- add a number in the paranthases
+  kable() %>%
+  kable_styling(c("striped","hover"))
 ```
 
-::: {.cell-output .cell-output-stdout}
-```
-# A tibble: 6 × 8
-  species island bill_length_mm bill_depth_mm flipper_leng…¹ body_…² sex    year
-  <chr>   <chr>           <dbl>         <dbl>          <dbl>   <dbl> <chr> <dbl>
-1 Gentoo  Biscoe           59.6          17              230    6050 male   2007
-2 Gentoo  Biscoe           48.6          16              230    5800 male   2008
-3 Gentoo  Biscoe           52.1          17              230    5550 male   2009
-4 Gentoo  Biscoe           51.5          16.3            230    5500 male   2009
-5 Gentoo  Biscoe           55.1          16              230    5850 male   2009
-6 Gentoo  Biscoe           49.8          15.9            229    5950 male   2009
-# … with abbreviated variable names ¹​flipper_length_mm, ²​body_mass_g
-```
+::: {.cell-output-display}
+
+`````{=html}
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> species </th>
+   <th style="text-align:left;"> island </th>
+   <th style="text-align:right;"> bill_length_mm </th>
+   <th style="text-align:right;"> bill_depth_mm </th>
+   <th style="text-align:right;"> flipper_length_mm </th>
+   <th style="text-align:right;"> body_mass_g </th>
+   <th style="text-align:left;"> sex </th>
+   <th style="text-align:right;"> year </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 59.6 </td>
+   <td style="text-align:right;"> 17.0 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 6050 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2007 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 48.6 </td>
+   <td style="text-align:right;"> 16.0 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 5800 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2008 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 52.1 </td>
+   <td style="text-align:right;"> 17.0 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 5550 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 51.5 </td>
+   <td style="text-align:right;"> 16.3 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 5500 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 55.1 </td>
+   <td style="text-align:right;"> 16.0 </td>
+   <td style="text-align:right;"> 230 </td>
+   <td style="text-align:right;"> 5850 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Gentoo </td>
+   <td style="text-align:left;"> Biscoe </td>
+   <td style="text-align:right;"> 49.8 </td>
+   <td style="text-align:right;"> 15.9 </td>
+   <td style="text-align:right;"> 229 </td>
+   <td style="text-align:right;"> 5950 </td>
+   <td style="text-align:left;"> male </td>
+   <td style="text-align:right;"> 2009 </td>
+  </tr>
+</tbody>
+</table>
+
+`````
+
 :::
 :::
 
