@@ -633,4 +633,108 @@ penguins %>%
 :::
 
 
-Discussion:
+### Data Visualization
+
+-   What is the distribution of penguin flipper length?
+
+-   What is the distribution of penguin species?
+
+-   Does the distribution of flipper length depend on the species of penguin?
+
+-   How many penguins were observed per year?
+
+-   Is there any correlation between the bill length and the bill depth? \[scatter plot\]\\
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  ggplot() +
+  geom_histogram(aes(x=flipper_length_mm),
+                 bins = 8,
+                 fill =  "forestgreen",
+                 color = "black") +
+  labs(title = "Distribution of Flipper length (mm)", 
+       subtitle = "Mean in black, median in blue",
+       x = "Flipper Length (mm)",
+       y = "" ) +
+  geom_vline(aes(xintercept = mean(flipper_length_mm)), lwd = 2, lty= "dashed") +
+  geom_vline(aes(xintercept = median(flipper_length_mm)), lwd = 2, lty= "dotted", color = "blue")
+```
+
+::: {.cell-output .cell-output-stderr}
+```
+Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+```
+:::
+
+::: {.cell-output-display}
+![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-16-1.png){width=672}
+:::
+
+```{.r .cell-code}
+             #more bins = more detail, aes goes back into the data set to find info 
+```
+:::
+
+
+We will now look at the distribution of species.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  ggplot()+
+  geom_bar(mapping = aes(x=species), color = "black", fill = "blue") +
+  labs(title = "Counts of Penguin Species",
+       x = "Species", y="Count")
+```
+
+::: {.cell-output-display}
+![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-17-1.png){width=672}
+:::
+:::
+
+
+Discussion: This bar plot tells us how many penguins of each species were observed in this dataset.
+
+Scatter plot to see if bill length is correlated to bill depth.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  ggplot() +
+  geom_point(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  labs(title = "Ratio of Bill Depth and Bill Length",
+             x= "Bill Length", y ="Bill Depth") +
+  geom_smooth(aes(x = bill_length_mm, y = bill_depth_mm, color = species), method = "lm")
+```
+
+::: {.cell-output .cell-output-stderr}
+```
+`geom_smooth()` using formula = 'y ~ x'
+```
+:::
+
+::: {.cell-output .cell-output-stderr}
+```
+Warning in qt((1 - level)/2, df): NaNs produced
+```
+:::
+
+::: {.cell-output .cell-output-stderr}
+```
+Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
+-Inf
+```
+:::
+
+::: {.cell-output-display}
+![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-18-1.png){width=672}
+:::
+:::
