@@ -617,21 +617,9 @@ penguins %>%
 :::
 :::
 
-::: {.cell}
 
-```{.r .cell-code}
-penguins %>%
-  ggplot() + 
-  geom_bar(mapping = aes(x=species))+
-  labs(title = "Counts of Penguin Species",
-       x = "Species", y="Count")
+```{}
 ```
-
-::: {.cell-output-display}
-![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-15-1.png){width=672}
-:::
-:::
-
 
 ### Data Visualization
 
@@ -645,6 +633,23 @@ penguins %>%
 
 -   Is there any correlation between the bill length and the bill depth? \[scatter plot\]\\
 
+    Discussion: In the graph bar plot below we are looking at how many penguins per species were observed.
+
+
+    ::: {.cell}
+    
+    ```{.r .cell-code}
+    penguins %>%
+      ggplot() + 
+      geom_bar(mapping = aes(x=species))+
+      labs(title = "Counts of Penguin Species",
+           x = "Species", y="Count")
+    ```
+    
+    ::: {.cell-output-display}
+    ![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-15-1.png){width=672}
+    :::
+    :::
 
 ::: {.cell}
 
@@ -680,6 +685,8 @@ Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 :::
 
 
+Discussion: In the histogram above we are looking at the distribution of flipper length in comparison to the mean and median.
+
 We will now look at the distribution of species.
 
 
@@ -699,7 +706,7 @@ penguins %>%
 :::
 
 
-Discussion: This bar plot tells us how many penguins of each species were observed in this dataset.
+Discussion: This bar plot depicts how many penguins of each species were observed in this dataset.
 
 Scatter plot to see if bill length is correlated to bill depth.
 
@@ -738,3 +745,90 @@ Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
 ![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-18-1.png){width=672}
 :::
 :::
+
+
+```{}
+```
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = island, fill = species)) +
+  labs(title = "Species by Island",
+       x = "Island",
+       y = "Species")
+```
+
+::: {.cell-output-display}
+![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-19-1.png){width=672}
+:::
+:::
+
+
+Discussion: This bar plot depicts how much of each species we observed on each of the three islands.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = bill_depth_mm, y = species)) +
+  labs(title = "Bill Depth by Species",
+       x = "Bill Depth (mm)",
+       y = "")
+```
+
+::: {.cell-output-display}
+![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-20-1.png){width=672}
+:::
+:::
+
+
+### A Final Question
+
+This chunk of R code tells shows us the confidence interval for mean bill lengths.
+
+
+::: {.cell}
+
+```{.r .cell-code}
+penguins %>%
+  summarize(avg_bill_length = mean(bill_length_mm))
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+# A tibble: 1 × 1
+  avg_bill_length
+            <dbl>
+1            46.4
+```
+:::
+
+```{.r .cell-code}
+t.test(penguins$bill_length_mm, alternattive = "greater", mu=45, conf.level = 0.95)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+
+	One Sample t-test
+
+data:  penguins$bill_length_mm
+t = 1.8438, df = 43, p-value = 0.07211
+alternative hypothesis: true mean is not equal to 45
+95 percent confidence interval:
+ 44.87148 47.86943
+sample estimates:
+mean of x 
+ 46.37045 
+```
+:::
+:::
+
+
+The average bill length for a penguin that was given from our observations is about 46 mm. This average is defined by only the subset we have observed (44) and cannot be used for the whole population. The data is inaccurate in having only two Chinstrap penguins and a load ful of Gentoo's, therefore we can say this dataset does not to a good job at portraying the entire population of penguins in the world.
