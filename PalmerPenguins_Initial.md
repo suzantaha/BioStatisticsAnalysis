@@ -706,7 +706,7 @@ Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 :::
 
 
-This bar plot shows the flipper lengths of our data set, outlining the mean (black) and median (blue). We can see that our mean is around 211mm whereas our median is around 215mm. The difference indicates that there may be penguins that were observed who have a relatively small flipper length.
+This histogram shows the flipper lengths of our data set, outlining the mean (black) and median (blue). We can see that our mean is around 211mm whereas our median is around 215mm. The difference indicates that there may be penguins that were observed who have a relatively small flipper length.
 
 We will now look at the distribution of species.
 
