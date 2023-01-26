@@ -358,6 +358,10 @@ penguins %>%
 :::
 :::
 
+
+How many penguins by sex?
+
+
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -375,6 +379,10 @@ penguins %>%
 ```
 :::
 :::
+
+
+How many penguins of each species are female? Male?
+
 
 ::: {.cell}
 
@@ -522,6 +530,10 @@ penguins %>%
 :::
 :::
 
+
+This code block is summarizing our data and finding the mean, median, sd, etc.
+
+
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -551,6 +563,10 @@ penguins %>%
 ```
 :::
 :::
+
+
+Creating a table with columns of our choice.
+
 
 ::: {.cell}
 
@@ -594,6 +610,10 @@ chinstraps %>%
 :::
 :::
 
+
+Comparing mean bill depth and standard deviation per species.
+
+
 ::: {.cell}
 
 ```{.r .cell-code}
@@ -617,9 +637,6 @@ penguins %>%
 :::
 :::
 
-
-```{}
-```
 
 ### Data Visualization
 
@@ -650,6 +667,10 @@ penguins %>%
     ![](PalmerPenguins_Initial_files/figure-html/unnamed-chunk-15-1.png){width=672}
     :::
     :::
+
+
+    This bar plot depicts the count of each penguins species that were observed. Looking at this diagram we can see that Gentoo's take over more than 30 of the 44 penguins where as only two Chinstrap penguins were observed. This data tells us that we don't have an accurate representation of the populations of penguins.
+
 
 ::: {.cell}
 
@@ -685,7 +706,7 @@ Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 :::
 
 
-Discussion: In the histogram above we are looking at the distribution of flipper length in comparison to the mean and median.
+This bar plot shows the flipper lengths of our data set, outlining the mean (black) and median (blue). We can see that our mean is around 211mm whereas our median is around 215mm. The difference indicates that there may be penguins that were observed who have a relatively small flipper length.
 
 We will now look at the distribution of species.
 
@@ -706,9 +727,7 @@ penguins %>%
 :::
 
 
-Discussion: This bar plot depicts how many penguins of each species were observed in this dataset.
-
-Scatter plot to see if bill length is correlated to bill depth.
+Discussion: This bar plot depicts how many penguins of each species were observed in this dataset. The majority of these penguins are Gentoo's and we only see 2 Chinstraps that were observed, creating a data set that does not define the whole population of penguins.
 
 
 ::: {.cell}
@@ -747,8 +766,7 @@ Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
 :::
 
 
-```{}
-```
+Discussion: This scatter plot answers the question of whether bill length is correlated to bill depth. This diagram shows three different lines, one for each of the species. We can see that the majority of penguins observed are the Gentoo's which leads us to believe that their line of best fit is more accurate than the other species of penguins that were observed.
 
 
 ::: {.cell}
@@ -768,7 +786,7 @@ penguins %>%
 :::
 
 
-Discussion: This bar plot depicts how much of each species we observed on each of the three islands.
+Discussion: This bar plot depicts how much of each species we observed on each of the three islands. It is noted that all Gentoo's are found on Biscoe whereas all Chinstraps are found on the island Dream. The species Adelle are found on Biscoe as well as Torgersen.
 
 
 ::: {.cell}
@@ -787,6 +805,8 @@ penguins %>%
 :::
 :::
 
+
+Discussion: This bar plot explains the bill depth of each species in mm while giving averages for each of the species as well. We can see that Gentoo's have a smaller average in bill depth where Chinstraps and Adelles are closer to one another.
 
 ### A Final Question
 
